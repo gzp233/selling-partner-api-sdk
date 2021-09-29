@@ -100,7 +100,7 @@ type InventorySummary struct {
 	InventoryDetails *InventoryDetails `json:"inventoryDetails,omitempty"`
 
 	// The date and time that any quantity was last updated.
-	LastUpdatedTime *time.Time `json:"lastUpdatedTime,omitempty"`
+	LastUpdatedTime *string `json:"lastUpdatedTime,omitempty"`
 
 	// The localized language product title of the item within the specific marketplace.
 	ProductName *string `json:"productName,omitempty"`
