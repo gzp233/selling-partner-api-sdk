@@ -228,7 +228,7 @@ func NewListCatalogCategoriesRequest(endpoint string, params *ListCatalogCategor
 		return nil, err
 	}
 
-	basePath := fmt.Sprintf("/catalog/v0/categories")
+	basePath := fmt.Sprintf("/catalog/2020-12-01/categories")
 	if basePath[0] == '/' {
 		basePath = basePath[1:]
 	}
@@ -303,7 +303,7 @@ func NewListCatalogItemsRequest(endpoint string, params *ListCatalogItemsParams)
 		return nil, err
 	}
 
-	basePath := fmt.Sprintf("/catalog/v0/items")
+	basePath := fmt.Sprintf("/catalog/2020-12-01/items")
 	if basePath[0] == '/' {
 		basePath = basePath[1:]
 	}
@@ -465,7 +465,7 @@ func NewGetCatalogItemRequest(endpoint string, asin string, params *GetCatalogIt
 		return nil, err
 	}
 
-	basePath := fmt.Sprintf("/catalog/v0/items/%s", pathParam0)
+	basePath := fmt.Sprintf("/catalog/2020-12-01/items/%s", pathParam0)
 	if basePath[0] == '/' {
 		basePath = basePath[1:]
 	}
@@ -477,7 +477,19 @@ func NewGetCatalogItemRequest(endpoint string, asin string, params *GetCatalogIt
 
 	queryValues := queryUrl.Query()
 
-	if queryFrag, err := runtime.StyleParam("form", true, "MarketplaceId", params.MarketplaceId); err != nil {
+	if queryFrag, err := runtime.StyleParam("form", true, "marketplaceIds", params.MarketplaceIds); err != nil {
+		return nil, err
+	} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+		return nil, err
+	} else {
+		for k, v := range parsed {
+			for _, v2 := range v {
+				queryValues.Add(k, v2)
+			}
+		}
+	}
+
+	if queryFrag, err := runtime.StyleParam("form", true, "includedData", params.IncludedData); err != nil {
 		return nil, err
 	} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 		return nil, err

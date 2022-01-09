@@ -655,5 +655,7 @@ type ListCatalogItemsParams struct {
 type GetCatalogItemParams struct {
 
 	// A marketplace identifier. Specifies the marketplace for the item.
-	MarketplaceId string `json:"MarketplaceId"`
+	MarketplaceIds string `json:"marketplaceIds"`
+
+	IncludedData string `json:"includedData"`
 }
