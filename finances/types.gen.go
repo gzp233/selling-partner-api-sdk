@@ -467,6 +467,9 @@ type FinancialEvents struct {
 
 	// A list of shipment event information.
 	ShipmentEventList *ShipmentEventList `json:"ShipmentEventList,omitempty"`
+
+	// A list of removal shipment events
+	RemovalShipmentEventList *RemovalShipmentEventList `json:"RemovalShipmentEventList,omitempty"`
 }
 
 // ImagingServicesFeeEvent defines model for ImagingServicesFeeEvent.
