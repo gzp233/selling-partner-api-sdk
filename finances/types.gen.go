@@ -470,6 +470,8 @@ type FinancialEvents struct {
 
 	// A list of removal shipment events
 	RemovalShipmentEventList *RemovalShipmentEventList `json:"RemovalShipmentEventList,omitempty"`
+
+	RemovalShipmentAdjustmentEventList *RemovalShipmentAdjustmentEvent `json:"RemovalShipmentAdjustmentEventList,omitempty"`
 }
 
 // ImagingServicesFeeEvent defines model for ImagingServicesFeeEvent.
@@ -796,6 +798,60 @@ type RemovalShipmentItem struct {
 
 // RemovalShipmentItemList defines model for RemovalShipmentItemList.
 type RemovalShipmentItemList []RemovalShipmentItem
+
+// RemovalShipmentItem defines model for RemovalShipmentItem.
+type RemovalShipmentItemAdjustment struct {
+
+	// A currency type and amount.
+	RevenueAdjustment *Currency `json:"RevenueAdjustment,omitempty"`
+
+	// The Amazon fulfillment network SKU for the item.
+	FulfillmentNetworkSKU *string `json:"FulfillmentNetworkSKU,omitempty"`
+
+	// The quantity of the item.
+	AdjustedQuantity *int32 `json:"AdjustedQuantity,omitempty"`
+
+	// An identifier for an item in a removal shipment.
+	RemovalShipmentItemId *string `json:"RemovalShipmentItemId,omitempty"`
+
+	// A currency type and amount.
+	TaxWithheldAdjustment *Currency `json:"TaxWithheldAdjustment,omitempty"`
+
+	// A currency type and amount.
+	TaxAmountAdjustment *Currency `json:"TaxAmountAdjustment,omitempty"`
+
+	// The tax collection model applied to the item.
+	//
+	// Possible values:
+	//
+	// * MarketplaceFacilitator - Tax is withheld and remitted to the taxing authority by Amazon on behalf of the seller.
+	//
+	// * Standard - Tax is paid to the seller and not remitted to the taxing authority by Amazon.
+	TaxCollectionModel *string `json:"TaxCollectionModel,omitempty"`
+}
+
+// RemovalShipmentItemList defines model for RemovalShipmentItemList.
+type RemovalShipmentItemAdjustmentList []RemovalShipmentItemAdjustment
+
+// RemovalShipmentEvent defines model for RemovalShipmentEvent.
+type RemovalShipmentAdjustmentEvent struct {
+
+	// The identifier for the removal shipment order.
+	OrderId    *string `json:"OrderId,omitempty"`
+	MerchantOrderId    *string `json:"MerchantOrderId,omitempty"`
+	AdjustmentEventId    *string `json:"AdjustmentEventId,omitempty"`
+	PostedDate *time.Time   `json:"PostedDate,omitempty"`
+
+	// A list of information about removal shipment items.
+	RemovalShipmentItemAdjustmentList *RemovalShipmentItemAdjustmentList `json:"RemovalShipmentItemAdjustmentList,omitempty"`
+
+	// The type of removal order.
+	//
+	// Possible values:
+	//
+	// * WHOLESALE_LIQUIDATION
+	TransactionType *string `json:"TransactionType,omitempty"`
+}
 
 // RentalTransactionEvent defines model for RentalTransactionEvent.
 type RentalTransactionEvent struct {
