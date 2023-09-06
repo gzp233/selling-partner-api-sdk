@@ -338,3 +338,11 @@ func ParseSearchContentPublishRecordsResp(rsp *http.Response) (*SearchContentPub
 
 	return response, err
 }
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SearchContentPublishRecordsResp) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
