@@ -30,7 +30,7 @@ type CreateReportResponse struct {
 
 	// A list of error responses returned when a request is unsuccessful.
 	Errors  *ErrorList          `json:"errors,omitempty"`
-	Payload *CreateReportResult `json:"payload,omitempty"`
+	CreateReportResult
 }
 
 // CreateReportResult defines model for CreateReportResult.
@@ -114,7 +114,7 @@ type GetReportDocumentResponse struct {
 
 	// A list of error responses returned when a request is unsuccessful.
 	Errors  *ErrorList      `json:"errors,omitempty"`
-	Payload *ReportDocument `json:"payload,omitempty"`
+	ReportDocument
 }
 
 // GetReportResponse defines model for GetReportResponse.
@@ -122,7 +122,7 @@ type GetReportResponse struct {
 
 	// A list of error responses returned when a request is unsuccessful.
 	Errors  *ErrorList `json:"errors,omitempty"`
-	Payload *Report    `json:"payload,omitempty"`
+	Report
 }
 
 // GetReportScheduleResponse defines model for GetReportScheduleResponse.
@@ -151,7 +151,7 @@ type GetReportsResponse struct {
 
 	// Returned when the number of results exceeds pageSize. To get the next page of results, call getReports with this token as the only parameter.
 	NextToken *string     `json:"nextToken,omitempty"`
-	Payload   *ReportList `json:"payload,omitempty"`
+	Report
 }
 
 // Report defines model for Report.
