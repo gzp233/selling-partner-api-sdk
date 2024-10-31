@@ -555,6 +555,22 @@ func NewGetPricingRequest(endpoint string, params *GetPricingParams) (*http.Requ
 
 	}
 
+	if params.OfferType != nil {
+
+		if queryFrag, err := runtime.StyleParam("form", true, "OfferType", *params.OfferType); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+	}
+
 	queryUrl.RawQuery = queryValues.Encode()
 
 	req, err := http.NewRequest("GET", queryUrl.String(), nil)

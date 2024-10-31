@@ -479,4 +479,6 @@ type GetPricingParams struct {
 
 	// Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
 	ItemCondition *string `json:"ItemCondition,omitempty"`
+
+	OfferType *string `json:"OfferType,omitempty"`
 }
